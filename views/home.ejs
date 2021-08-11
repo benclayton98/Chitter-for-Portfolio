@@ -1,1 +1,20 @@
-<h1>Homepage</h1>
+<h1>Homepage</h1> <h2>Welcome <%= name %> </h2>
+<hr>
+<h3>Chitters:</h3>
+<form action="/add" method=GET>
+<input style="position:relative; margin-top: -39px ;left: 100pt;" type="submit" value="Add Chitter" id="#addChitter"></form>
+<hr>
+
+
+
+<div id='chitter'>
+    <% chitter.map((chitter, index) => {%>
+   
+    <%= `${chitter.username}:` %>
+    <p id="chitter-<%=index%>"><%= chitter.chitter %></p>
+    <form action="/home/<%=chitter.id%>?_method=DELETE" method="POST">
+    <input type="submit" value="Delete Chitter" id="deleteChitterButton"></form>
+    <%= chitter.createdAt %> <hr>
+    <% })%>
+
+    </div>
