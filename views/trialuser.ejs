@@ -1,0 +1,15 @@
+<h1>Homepage</h1> <h2 id="welcomeMessage">Welcome Guest </h2>
+<hr>
+<h3>Chitters:</h3>
+<hr>
+
+
+
+<div id='chitter'>
+    <% chitter.map((chitter, index) => {%>
+    <%= `${chitter.name} - ${chitter.username}:` %>
+    <p id="chitter-<%=index%>"><%= chitter.chitter %></p>
+    <%= chitter.createdAt %> <hr>
+    <% })%>
+
+    </div>

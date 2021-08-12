@@ -42,8 +42,6 @@ app.get('/home', authenticator, async (req, res) => {
 })
 
 app.post('/home', async (req, res) => {
-    console.log(req.session.name)
-    console.log(req.session.username)
     await Chitter.create({
         name: req.session.name,
         chitter: req.body.chitter, 
@@ -66,21 +64,27 @@ app.get('/add', async (req, res) => {
 })
 
 app.get('/signup/new', async (req, res) => {
-    res.render('registration/registration.ejs')
+    res.render('registration/registration.ejs',{
+      error: ''
+    })
 })
 
 app.post('/signup', async (req, res) => {
+  if (req.body.email === req.body.username) {
+    res.render('registration/registration.ejs', { error: ["Your email address and username need to be unique"] })
+  }
+  else {
     let newUser = await User.create({
-        email: req.body.email,
-        username: req.body.username,
-        name: req.body.fullName,
-        passwordHash: bcrypt.hashSync(req.body.password)
-      })
+      email: req.body.email,
+      username: req.body.username,
+      name: req.body.fullName,
+      passwordHash: bcrypt.hashSync(req.body.password)
+    })
       req.session.userId = newUser.id
       req.session.name = newUser.name
       req.session.username = newUser.username
- 
       res.redirect('/home')
+  }
 })
 
 
@@ -108,6 +112,15 @@ app.post('/logout', async (req, res) => {
         req.session.username = undefined
         res.redirect('/')
         
+})
+
+app.get('/trial', async (req, res) => {
+    const chitter = await Chitter.findAll({
+      order: [['id', 'DESC']]
+  })
+  res.render('trialuser.ejs', {
+      chitter: chitter,
+  })
 })
 
 app.listen(port, () => {
