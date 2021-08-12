@@ -7,7 +7,7 @@ describe('Chitter Users', function() {
   
     it('sign in', function() {
       cy.visit('/')
-      cy.get('#usernameLogin').type('test@test.com')
+      cy.get('#usernameLogin').type('test')
       cy.get('#passwordLogin').type('test123')
       cy.get('#homepageButton').click()
       cy.url().should('include', '/home')
@@ -19,7 +19,7 @@ describe('Chitter Users', function() {
         cy.get('#passwordLogin').type('test123')
         cy.get('#homepageButton').click()
         cy.url().should('not.include', '/home')
-        cy.get('#errorMessage').should("contain", "Sorry you have entered incorrect details.")
+        cy.get('#errorMessage').should("contain", "Sorry, login details are incorrect")
     })
   
     it('wrong password prevents sign in', function() {
@@ -28,16 +28,16 @@ describe('Chitter Users', function() {
         cy.get('#passwordLogin').type('password')
         cy.get('#homepageButton').click()
         cy.url().should('not.include', '/home')
-        cy.get('#errorMessage').should("contain", "Sorry you have entered incorrect details.")
+        cy.get('#errorMessage').should("contain", "Sorry, login details are incorrect")
     })
   
     it('can sign out', function() {
         cy.visit('/')
-        cy.get('#usernameLogin').type('test@test.com')
-        cy.get('#passwordLogin').type('password')
+        cy.get('#usernameLogin').type('test')
+        cy.get('#passwordLogin').type('test123')
         cy.get('#homepageButton').click()
         cy.url().should('include', '/home')
-        cy.get('#signOut').click()
+        cy.get('#logOutButton').click()
         cy.get('#loginWelcome').should('exist')
     })
   })

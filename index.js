@@ -7,8 +7,6 @@ const methodOverride = require('method-override')
 const bcrypt = require('bcryptjs')
 const session = require('express-session')
 
-
-
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
@@ -19,16 +17,21 @@ app.use(session({
     saveUninitialized: true,
   }))
 
+const authenticator = (req, res, next) => {
+  if (req.session.userId === undefined) {
+    res.redirect('/')
+  } else {
+    next()
+  }
+}
+
 app.get('/', (req, res) => {
-    res.render('login.ejs')
+    res.render('login.ejs',{
+        error: ''
+    })
 })
 
-app.get('/login', (req, res) => {
-    
-    res.render('home.ejs')
-})
-
-app.get('/home', async (req, res) => {
+app.get('/home', authenticator, async (req, res) => {
     const chitter = await Chitter.findAll({
         order: [['id', 'DESC']]
     })
@@ -69,11 +72,36 @@ app.post('/signup', async (req, res) => {
       })
       req.session.userId = newUser.id
       req.session.name = newUser.name
+      req.session.username = newUser.username
  
       res.redirect('/home')
 })
 
 
+app.post('/login', async (req, res) => {
+
+    const user = await User.findOne({
+        where: {
+        username: req.body.username
+      }})
+    
+      if (user && bcrypt.compareSync(req.body.password, user.passwordHash)) {
+        req.session.userId = user.id
+        req.session.name = user.name
+        res.redirect('/home')
+      }
+      else {
+        res.render('login.ejs', { error: ["Sorry, login details are incorrect"] })
+      }
+})
+
+app.post('/logout', async (req, res) => {
+        req.session.userId = undefined
+        req.session.name = undefined
+        req.session.username = undefined
+        res.redirect('/')
+        
+})
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

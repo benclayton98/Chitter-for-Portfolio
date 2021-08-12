@@ -1,4 +1,7 @@
 <h1>Homepage</h1> <h2 id="welcomeMessage">Welcome <%= name %> </h2>
+<form action="/logout" method="POST">
+    <p>Not <%= name %>?</p>
+<input type="submit" value="Sign out" id="logOutButton"></form>
 <hr>
 <h3>Chitters:</h3>
 <form action="/add" method=GET>
