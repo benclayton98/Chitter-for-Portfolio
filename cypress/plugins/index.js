@@ -15,24 +15,24 @@
 /**
  * @type {Cypress.PluginConfig}
  */
- const truncateTables = require('./../pluginFiles/truncate.js')
- const createTestUser = require('./../pluginFiles/createUser.js')
- const truncateChitters = require('./../pluginFiles/truncChitters.js')
+const truncateTables = require('./../pluginFiles/truncate.js')
+const createTestUser = require('./../pluginFiles/createUser.js')
+const truncateChitters = require('./../pluginFiles/truncChitters.js')
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   on('task', {
-    taskTruncateTables() {
+    taskTruncateTables () {
       truncateTables()
       return null
     },
-    taskCreateTestUser() {
+    taskCreateTestUser () {
       createTestUser()
       return null
     },
-    taskTruncateChitters() {
+    taskTruncateChitters () {
       truncateChitters()
       return null
     }

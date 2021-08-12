@@ -1,21 +1,20 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Chitter extends Model {
-
-    static associate(models) {
+    static associate (models) {
       this.User = this.belongsTo(models.User)
     }
   };
   Chitter.init({
     chitter: DataTypes.STRING,
-    UserId: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Chitter',
     freezeTableName: true
-  });
-  return Chitter;
-};
+  })
+  return Chitter
+}
