@@ -6,10 +6,10 @@
 
 
 <div id='chitter'>
-    <% chitter.map((chitter, index) => {%>
-    <%= `${chitter.name} - ${chitter.username}:` %>
-    <p id="chitter-<%=index%>"><%= chitter.chitter %></p>
-    <%= chitter.createdAt %> <hr>
-    <% })%>
+    <% chitter.map((peep, index) => {%>
+   <%= `${peep.User.name} - ${peep.User.username}:` %>
+   <p id="chitter-<%=index%>"><%= peep.chitter %></p>
+   <%= peep.createdAt %> <hr>
+   <% })%>
 
-    </div>
+   </div>

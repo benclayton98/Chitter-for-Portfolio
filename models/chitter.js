@@ -6,16 +6,16 @@ module.exports = (sequelize, DataTypes) => {
   class Chitter extends Model {
 
     static associate(models) {
-      // define association here
+      this.User = this.belongsTo(models.User)
     }
   };
   Chitter.init({
-    username: DataTypes.STRING,
     chitter: DataTypes.STRING,
-    name: DataTypes.STRING
+    UserId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Chitter',
+    freezeTableName: true
   });
   return Chitter;
 };

@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = 3000   
-const { models, User, Chitter } = require('./models');
+const { User, Chitter } = require('./models');
 const methodOverride = require('method-override')
 const bcrypt = require('bcryptjs')
 const session = require('express-session')
@@ -33,8 +33,12 @@ app.get('/', (req, res) => {
 
 app.get('/home', authenticator, async (req, res) => {
     const chitter = await Chitter.findAll({
-        order: [['id', 'DESC']]
+        order: [['id', 'DESC']],
+        include:{
+          all: true
+        }
     })
+
     res.render('home.ejs', {
         chitter: chitter,
         name: req.session.name
@@ -43,9 +47,8 @@ app.get('/home', authenticator, async (req, res) => {
 
 app.post('/home', async (req, res) => {
     await Chitter.create({
-        name: req.session.name,
+        UserId: req.session.userId,
         chitter: req.body.chitter, 
-        username: req.session.username 
         })
     res.redirect('/home')
 })
@@ -82,7 +85,6 @@ app.post('/signup', async (req, res) => {
     })
       req.session.userId = newUser.id
       req.session.name = newUser.name
-      req.session.username = newUser.username
       res.redirect('/home')
   }
 })
@@ -98,7 +100,6 @@ app.post('/login', async (req, res) => {
       if (user && bcrypt.compareSync(req.body.password, user.passwordHash)) {
         req.session.userId = user.id
         req.session.name = user.name
-        req.session.username = user.username
         res.redirect('/home')
       }
       else {
@@ -109,7 +110,6 @@ app.post('/login', async (req, res) => {
 app.post('/logout', async (req, res) => {
         req.session.userId = undefined
         req.session.name = undefined
-        req.session.username = undefined
         res.redirect('/')
         
 })
