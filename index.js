@@ -23,6 +23,11 @@ app.get('/', (req, res) => {
     res.render('login.ejs')
 })
 
+app.get('/login', (req, res) => {
+    
+    res.render('home.ejs')
+})
+
 app.get('/home', async (req, res) => {
     const chitter = await Chitter.findAll({
         order: [['id', 'DESC']]
@@ -64,6 +69,7 @@ app.post('/signup', async (req, res) => {
       })
       req.session.userId = newUser.id
       req.session.name = newUser.name
+ 
       res.redirect('/home')
 })
 
