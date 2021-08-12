@@ -42,7 +42,13 @@ app.get('/home', authenticator, async (req, res) => {
 })
 
 app.post('/home', async (req, res) => {
-    await Chitter.create({chitter: req.body.chitter, username: req.body.username})
+    console.log(req.session.name)
+    console.log(req.session.username)
+    await Chitter.create({
+        name: req.session.name,
+        chitter: req.body.chitter, 
+        username: req.session.username 
+        })
     res.redirect('/home')
 })
 
@@ -88,6 +94,7 @@ app.post('/login', async (req, res) => {
       if (user && bcrypt.compareSync(req.body.password, user.passwordHash)) {
         req.session.userId = user.id
         req.session.name = user.name
+        req.session.username = user.username
         res.redirect('/home')
       }
       else {

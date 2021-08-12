@@ -17,6 +17,7 @@
  */
  const truncateTables = require('./../pluginFiles/truncate.js')
  const createTestUser = require('./../pluginFiles/createUser.js')
+ const truncateChitters = require('./../pluginFiles/truncChitters.js')
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
@@ -29,6 +30,10 @@ module.exports = (on, config) => {
     },
     taskCreateTestUser() {
       createTestUser()
+      return null
+    },
+    taskTruncateChitters() {
+      truncateChitters()
       return null
     }
   })

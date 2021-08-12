@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   Chitter.init({
     username: DataTypes.STRING,
-    chitter: DataTypes.STRING
+    chitter: DataTypes.STRING,
+    name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Chitter',
