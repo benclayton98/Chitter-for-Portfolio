@@ -1,3 +1,37 @@
+## Technologies Used
+
+This program runs primarily on Express and sequelize (through the utilisation of postgres). It also uses a third-party library called bcrypt to ensure that any password that a user has, is well encrypted and cannot be easily hacked.
+
+## How to install
+
+```js
+npm install
+
+npx sequelize-cli db:create
+
+npx sequelize-cli db:migrate
+
+npx nodemon index
+
+go to localhost:3000 in your browser
+
+use the program!
+
+```
+
+To run tests, run the above commands and then run:
+
+```js 
+npx cypress open
+```
+
+## Process
+
+I created this program using test-driven development. I used Cypress testing to test each feature. I would initally fail the test and then write code to ensure that my tests passed.
+I started by ensuring that the actual functioning of the Chitter website would work (so a user could add a peep and their username and the creation time would appear next to the peep). After completing this I moved onto the login/logout function of the website. This eventually resulted in me having to change the way my Chitter website was coded to ensure a higher quality program. The integration of my database tables using a foreign key contributed to this outcome.
+Now a user can sign up or log into my Chitter site, post a peep and also see the peeps that other users have posted. 
+
+
 Chitter Challenge
 =================
 
