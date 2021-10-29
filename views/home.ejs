@@ -1,22 +1,26 @@
-<h1>Homepage</h1> <h2 id="welcomeMessage">Welcome <%= name %> </h2>
+<link href="home.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+<h1 class="centerHome" style="font-family: Permanent Marker;">Home</h1> 
+<h2 id="welcomeMessage" style="font-family:Verdana;">Welcome <%= name %> </h2>
 <form action="/logout" method="POST">
     
-    <p>Not <%= name %>?</p>
+    <p style="font-family:Verdana;">Not <%= name %>?</p>
 <input type="submit" value="Sign out" id="logOutButton"></form>
 <hr>
 <h3>Chitters:</h3>
 <form action="/add" method=GET>
-<input style="position:relative; margin-top: -39px ;left: 100pt;" type="submit" value="Add Chitter" id="addChitter"></form>
+<input class="genButton" style="position:relative; margin-top: -39px ;left: 100pt;" type="submit" value="Add Chitter" id="addChitter"></form>
 <hr>
 
 
 
-<div id='chitter'>
+<div id='chitter' style="font-family: Arial;">
      <% chitter.map((peep, index) => {%>
     <%= `${peep.User.name} - ${peep.User.username}:` %>
-    <p id="chitter-<%=index%>"><%= peep.chitter %></p>
+    <p id="chitter-<%=index%>" style="font-family: Permanent Marker;"><%= peep.chitter %></p>
     <form action="/home/<%=peep.id%>?_method=DELETE" method="POST">
-    <input type="submit" value="Delete Chitter" id="deleteChitterButton"></form>
+    <input type="submit" class="deleteButton" value="Delete Chitter" id="deleteChitterButton"></form>
     <%= peep.createdAt %> <hr>
     <% })%>
 

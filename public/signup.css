@@ -1,0 +1,47 @@
+
+body{
+    background: rgb(251,251,251);
+    background: radial-gradient(circle, rgba(251,251,251,1) 0%, rgba(105,166,161,1) 100%);
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.centerHeading{
+    position:relative;
+    left: 40%;
+}
+
+.centerLogin{
+    position:relative;
+    left: 38%;
+    top: 20%;
+}
+
+.addButton {
+	box-shadow: 0px 1px 0px 0px #f0f7fa;
+	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+	background-color:#33bdef;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:10px;
+	font-weight:bold;
+	padding:4px 16px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #5b6178;
+}
+.addButton:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+	background-color:#019ad2;
+}
+.addButton:active {
+	position:relative;
+	top:1px;
+}
+

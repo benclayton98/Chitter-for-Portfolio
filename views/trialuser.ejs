@@ -1,14 +1,18 @@
-<h1>Homepage</h1> <h2 id="welcomeMessage">Welcome Guest </h2>
+<link href="home.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+<h1 class="centerHome" style="font-family: Permanent Marker;">Home</h1> 
+<h2 id="welcomeMessage" style="font-family:Verdana;">Welcome Guest </h2>
 <hr>
 <h3>Chitters:</h3>
 <hr>
 
 
 
-<div id='chitter'>
+<div id='chitter' style="font-family: Arial;">
     <% chitter.map((peep, index) => {%>
    <%= `${peep.User.name} - ${peep.User.username}:` %>
-   <p id="chitter-<%=index%>"><%= peep.chitter %></p>
+   <p id="chitter-<%=index%>" style="font-family: Permanent Marker;"><%= peep.chitter %></p>
    <%= peep.createdAt %> <hr>
    <% })%>
 

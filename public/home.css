@@ -1,0 +1,71 @@
+body{
+    background: rgb(251,251,251);
+    background: radial-gradient(farthest-corner at 700px 40px, rgba(251,251,251,1) 0%, rgba(105,166,161,1) 100%);
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.centerHome{
+    position:relative;
+    left: 47%;
+    top: 2%;
+}
+
+.centerLogin{
+    position:relative;
+    left: 38%;
+    top: 20%;
+}
+
+.genButton {
+	box-shadow: 0px 1px 0px 0px #f0f7fa;
+	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+	background-color:#33bdef;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #5b6178;
+}
+.genButton:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+	background-color:#019ad2;
+}
+.genButton:active {
+	position:relative;
+	top:1px;
+}
+
+.deleteButton {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:9px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:8px;
+	font-weight:bold;
+	padding:3px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.deleteButton:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.deleteButton:active {
+	position:relative;
+	top:1px;
+}
